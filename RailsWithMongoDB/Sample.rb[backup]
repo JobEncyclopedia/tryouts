@@ -1,0 +1,33 @@
+class Sample
+  include Mongoid::Document
+  # initialize from both a Mongo and Web hash
+  def initialize(params={})
+    #switch between both internal and external views of id and population
+    @id=params[:_id].nil? ? params[:id] : params[:_id]
+    @city=params[:city]
+    @state=params[:state]
+    @population=params[:pop].nil? ? params[:population] : params[:pop]
+  end
+  
+	def self.mongo_client
+		Mongoid::Clients.default
+	end
+	
+	def self.collection
+		self.mongo_client['SampleCollection']
+	end
+	
+	  # create a new document using the current instance
+  def save 
+    #@sample_collection = SampleCollection.new()
+    Rails.logger.debug {"saving #{self}"}
+	Sample.mongo_client
+	Sample.collection
+    #result=self.class.collection
+	#		.create({job_name => "Summa"})
+             # .insert(job_name : "Summa")
+    result=SampleCollection
+			.create({job_name => "Summa"})				
+    @id=result.inserted_id
+  end
+end

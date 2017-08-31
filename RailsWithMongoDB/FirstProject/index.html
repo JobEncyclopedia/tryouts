@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Forms Complete Example</title>
+	<link rel="stylesheet" href="FirstCss.css">
+</head>
+<body>
+<form action="http://localhost:3000/create" method="post" id="register">
+<h1>Post a Job!</h1>
+  <fieldset> 
+    <legend>Job details</legend> 
+    <div> 
+        <label>Job Name
+        <input id="job_name" name="job_name" type="text" placeholder="Job Name" required autofocus> 
+		</label>
+    </div>
+    <div> 
+        <label>Job Description
+        <textarea id="job_desc" name="job_desc" rows="10" cols="30"></textarea> 
+		</label>
+    </div>
+    <div> 
+    	<label>Field
+        <input id="field" name="field" type="text" required>
+		</label>
+    </div> 
+    <div id='lastInput'> 
+        <label>Average Salary 
+        <input id="avg_salary" name="avg_salary" type="number">
+		</label> 
+    </div>
+    <button type="button" onclick="myFunction('lastInput')">Add your Own Field</button>
+    <script>
+    function myFunction(divName){
+    	var lastInput = document.getElementById(divName);
+    	var x = document.createElement("INPUT");
+		x.setAttribute("type", "text");
+		var newlabel = document.createElement("Label");
+    	newlabel.setAttribute("for",x);
+    	newlabel.innerHTML = "Field Name";
+		var y = document.createElement("INPUT");
+		y.setAttribute("type", "text");
+		var newlabel1 = document.createElement("Label");
+    	newlabel1.setAttribute("for",y);
+    	newlabel1.innerHTML = "Field Value";
+    	lastInput.appendChild(newlabel);
+		lastInput.appendChild(x);
+		lastInput.appendChild(newlabel1);
+		lastInput.appendChild(y);
+    }
+    </script>
+  </fieldset>
+  <fieldset> 
+  	<div> 
+	    <button type=submit>Submit</button> 
+    </div> 
+  </fieldset> 
+</form> 
+</body>
+</html>
